@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   get 'all_users' => 'epicenter#all_users'
 
+  get 'tag_tweets' => 'epicenter#tag_tweets'
+
+  get 'retweet' => 'tweets#retweet'
+
   resources :tweets
   devise_for :users
 

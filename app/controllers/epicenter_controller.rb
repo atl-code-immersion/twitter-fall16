@@ -14,7 +14,7 @@ class EpicenterController < ApplicationController
 
   	@following_tweets = []
 
-  	Tweet.all.each do |tweet|
+  	Tweet.order(created_at: :desc).each do |tweet|
 
   		if current_user.following.include?(tweet.user_id) || tweet.user_id == current_user.id
   			@following_tweets.push(tweet)
@@ -63,6 +63,9 @@ class EpicenterController < ApplicationController
     @users = User.all
   end
 
+  def tag_tweets
+    @tag = Tag.find(params[:id])
+  end
 
 
 
