@@ -1,0 +1,16 @@
+<div class="col-md-3">
+	<h3><%= link_to @user.name, show_user_path(id: @user.id) %></h3>
+	<p><%= link_to "@#{@user.username}", show_user_path(id: @user.id) %></p>
+	<p><%= @user.bio %></p>
+	<p><i class="fa fa-map-marker"></i> <%= @user.location %></p>
+	<p><i class="fa fa-calendar"></i> Joined <%= @user.created_at.strftime("%B %Y") %></p>
+	<% if @user.id != current_user.id %>
+		<p>
+			<% if current_user.following.include?(@user.id) %>
+				<%= link_to "Following", unfollow_path(id: @user.id), class: "btn btn-primary", id: "unfollow_btn" %>
+			<% else %>
+				<%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
+			<% end %>
+		</p>
+	<% end %>
+</div>

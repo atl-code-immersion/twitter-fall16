@@ -11,9 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :message %>
-    <%= f.text_field :message %>
+  <div class="form-group">
+    <%= f.text_field :message, placeholder: "What's happening?", class: "form-control" %>
   </div>
 
   <div class="field">
@@ -21,6 +20,8 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button(class: "btn btn-info") do %>
+      <i class="fa fa-pencil-square-o"></i> Tweet
+    <% end %>
   </div>
 <% end %>
