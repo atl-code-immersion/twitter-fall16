@@ -51,6 +51,10 @@
 	padding-top: 10px;
 }
 
+.tweet-well {
+	padding-bottom: 10px;
+}
+
 .center-it {
 	text-align: center;
 }
@@ -115,4 +119,20 @@ a:hover.no-underline{
 
 .cant-see-me {
 	display: none;
+}
+
+#tweet_actions a {
+	color: #aab8c2;
+}
+
+#retweet_action:hover {
+	color: #19cf86;
+}
+
+#reply_action:hover {
+	color: #2fc2ef;
+}
+
+#like_action:hover {
+	color: red;
 }

@@ -17,6 +17,10 @@ Rails.application.routes.draw do
 
   get 'retweet' => 'tweets#retweet'
 
+  get 'reply_tweet' => 'tweets#reply_tweet'
+
+  get 'like_tweet' => 'tweets#like_tweet'
+
   resources :tweets
   devise_for :users
 

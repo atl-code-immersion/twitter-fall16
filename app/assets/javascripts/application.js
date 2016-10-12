@@ -25,8 +25,14 @@ $(document).ready(function(){
 		$(this).removeClass("btn-danger");
 		$(this).addClass("btn-primary");
 		$(this).html("Following");
-	})
+	});
+
+	$(function () {
+  	$('[data-toggle="tooltip"]').tooltip()
+	});
 })
+
+
 
 
 

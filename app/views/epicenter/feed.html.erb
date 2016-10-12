@@ -11,18 +11,48 @@
 		</div>
 		<div class="row">
 			<% @following_tweets.each do |tweet| %>
-				<div class="col-md-12 tweet-area borderline">
-					<p>
-						<%= link_to show_user_path(id: tweet.user.id), class: "no-underline" do %>
-							<%= tweet.user.name %> <%= "@#{tweet.user.username}" %>
+				<div class="col-md-12 tweet-area borderline tweet-well">
+				<!-- check if tweet is a retweet, if it is,
+	     		redefine the variable tweet to be that
+	     		re-tweeted tweet -->
+				<% if tweet.retweet %>
+					<p><i class="fa fa-retweet"></i> 
+						<%if tweet.user_id == current_user.id %>
+							You
+						<% else %>
+							<%= tweet.user.name %>
 						<% end %>
-						&#8226; <%= time_ago_in_words(tweet.created_at) %>
-					</p>
-					<p><%= tweet.message.html_safe %></p>
-					<p>
-						<%= link_to "Retweet", retweet_path(id: tweet.id) %>
-					</p>
+							Retweeted</p>
+					<% tweet = Tweet.find(tweet.retweet_id) %>
+				<% end %>
+
+				<!-- So now tweet is either as it was, or 
+			       or the retweeted tweet -->
+				<p>
+					<%= link_to show_user_path(id: tweet.user.id), class: "no-underline" do %>
+						<%= tweet.user.name %> <%= "@#{tweet.user.username}" %>
+					<% end %>
+					&#8226; <%= time_ago_in_words(tweet.created_at) %>
+				</p>
+				<p><%= tweet.message.html_safe %></p>
+				<div class="row" id="tweet_actions">
+					<div class="col-md-3">
+						<%= link_to reply_tweet_path(id: tweet.id) do %>
+							<i class="fa fa-reply fa-lg" data-toggle="tooltip" data-placement="top" title="Reply" id="reply_action"></i>
+						<% end %>
+					</div>
+					<div class="col-md-3">
+						<%= link_to retweet_path(id: tweet.id) do %>
+							<i class="fa fa-retweet fa-lg" data-toggle="tooltip" data-placement="top"  title="Retweet" id="retweet_action"></i>
+						<% end %>
+					</div>
+					<div class="col-md-3">
+						<%= link_to like_tweet_path(id: tweet.id) do %>
+							<i class="fa fa-heart fa-lg" data-toggle="tooltip" data-placement="top" title="Like" id="like_action"></i>
+						<% end %>
+					</div>
 				</div>
+			</div>
 			<% end %>
 		</div>
 	</div>

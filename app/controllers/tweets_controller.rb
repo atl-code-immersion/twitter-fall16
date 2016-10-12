@@ -10,6 +10,13 @@ class TweetsController < ApplicationController
     redirect_to :back
   end
 
+  # def like_tweet
+  #   tweet = Tweet.find(params[:id])
+  #   tweet.score += 1
+  #   tweet.save
+  #   redirect_to :back
+  # end
+
   # GET /tweets
   # GET /tweets.json
   def index
